@@ -1,15 +1,15 @@
 # Maintainer: Doug Newgard <scimmia at archlinux dot info>
 
-_pi_ver=2
+_pi_ver=3
 _pkgname=qmltermwidget
 pkgname=$_pkgname-git
-pkgrel=1
-pkgver=0.1.0.r2.g4d93f02
+pkgrel=2
+pkgver=0.1.0.r23.g051e019
 pkgdesc='QML port of qtermwidget - development version'
 arch=('any')
 url='https://github.com/Swordfish90/qmltermwidget'
 license=('GPL')
-depends=('qt-sdk-raspberry-pi2-target-libs')
+depends=('qt-sdk-raspberry-pi-target-libs')
 makedepends=('git')
 provides=("$_pkgname=$pkgver")
 conflicts=("$_pkgname" 'cool-retro-term-git<1.0.0RC1.r39')
@@ -31,7 +31,10 @@ build() {
 }
 
 package() {
+  local temp_pkgdir="$srcdir/refactor_package"
   cd "$srcdir/$_pkgname"
 
-  make INSTALL_ROOT="$pkgdir" install
+  mkdir $temp_pkgdir
+  make INSTALL_ROOT="$temp_pkgdir" install
+  mv ${temp_pkgdir}/mnt/pi/* $pkgdir
 }
