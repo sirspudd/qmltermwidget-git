@@ -10,7 +10,7 @@ arch=('any')
 url='https://github.com/Swordfish90/qmltermwidget'
 license=('GPL')
 depends=('qt-sdk-raspberry-pi-target-libs')
-makedepends=('git')
+makedepends=('git' 'qt-sdk-raspberry-pi${_pi_ver}')
 provides=("$_pkgname=$pkgver")
 conflicts=("$_pkgname" 'cool-retro-term-git<1.0.0RC1.r39')
 source=("git://github.com/Swordfish90/qmltermwidget.git")
@@ -34,6 +34,7 @@ package() {
   local temp_pkgdir="$srcdir/refactor_package"
   cd "$srcdir/$_pkgname"
 
+  rm $temp_pkgdir
   mkdir $temp_pkgdir
   make INSTALL_ROOT="$temp_pkgdir" install
   mv ${temp_pkgdir}/mnt/pi/* $pkgdir
