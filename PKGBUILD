@@ -1,6 +1,6 @@
 # Maintainer: Doug Newgard <scimmia at archlinux dot info>
 
-_pi_ver=3
+_pi_ver=2
 _pkgname=qmltermwidget
 pkgname=$_pkgname-git
 pkgrel=2
@@ -34,7 +34,7 @@ package() {
   local temp_pkgdir="$srcdir/refactor_package"
   cd "$srcdir/$_pkgname"
 
-  rm $temp_pkgdir
+  rm -Rf $temp_pkgdir
   mkdir $temp_pkgdir
   make INSTALL_ROOT="$temp_pkgdir" install
   mv ${temp_pkgdir}/mnt/pi/* $pkgdir
