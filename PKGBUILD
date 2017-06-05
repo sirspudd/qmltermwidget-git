@@ -46,5 +46,5 @@ package() {
   rm -Rf $temp_pkgdir
   mkdir $temp_pkgdir
   make INSTALL_ROOT="$temp_pkgdir" install
-  mv ${temp_pkgdir}/mnt/pi/* $pkgdir
+  mv ${temp_pkgdir}/mnt/pi${_piver}/* $pkgdir
 }
