@@ -42,9 +42,5 @@ build() {
 package() {
   local temp_pkgdir="$srcdir/refactor_package"
   cd "$srcdir/$_pkgname"
-
-  rm -Rf $temp_pkgdir
-  mkdir $temp_pkgdir
-  make INSTALL_ROOT="$temp_pkgdir" install
-  mv ${temp_pkgdir}/mnt/pi${_piver}/* $pkgdir
+  make INSTALL_ROOT="$pkgdir" install
 }
