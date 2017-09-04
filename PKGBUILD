@@ -13,7 +13,7 @@ fi
 
 _pkgname=qmltermwidget
 pkgname=$_pkgname-git
-pkgrel=2
+pkgrel=3
 pkgver=0.1.0.r23.g051e019
 pkgdesc='QML port of qtermwidget - development version'
 arch=('any')
@@ -42,5 +42,9 @@ build() {
 package() {
   local temp_pkgdir="$srcdir/refactor_package"
   cd "$srcdir/$_pkgname"
-  make INSTALL_ROOT="$pkgdir" install
+
+  rm -Rf $temp_pkgdir
+  mkdir $temp_pkgdir
+  make INSTALL_ROOT="$temp_pkgdir" install
+  mv ${temp_pkgdir}/mnt/pi${_piver}/* $pkgdir
 }
